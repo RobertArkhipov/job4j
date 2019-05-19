@@ -13,14 +13,26 @@ public class ArraysUnited {
      */
     public int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
-        for (int a = 0; a < left.length; a++) {
-            if (left[a] < right[a]) {
-                result[a + a] = left[a];
-                result[a + a + 1] = right[a];
-            } else {
-                result[a + a] = right[a];
-                result[a + a + 1] = left[a];
+        int resultIndex = 0;
+        int a = 0;
+        int b = 0;
+        for (; a < left.length || b < right.length;) {
+            if (a < left.length && b < right.length) {
+                if (left[a] < right[b]) {
+                    result[resultIndex] = left[a];
+                    a++;
+                } else {
+                    result[resultIndex] = right[b];
+                    b++;
+                }
+            } else if (a < left.length) {
+                result[resultIndex] = left[a];
+                a++;
+            } else if (b < right.length) {
+                result[resultIndex] = right[b];
+                b++;
             }
+            resultIndex++;
         }
         return result;
     }

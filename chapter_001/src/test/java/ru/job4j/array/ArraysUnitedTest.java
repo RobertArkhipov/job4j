@@ -15,10 +15,10 @@ public class ArraysUnitedTest {
     @Test
     public void whenAAndBThenExpectArray() {
         ArraysUnited united = new ArraysUnited();
-        int[] a = {1, 3, 5};
-        int[] b = {2, 3, 4};
+        int[] a = {1, 2, 3, 1000};
+        int[] b = {500, 600, 700};
         int[] resultArray = united.merge(a, b);
-        int[] expectArray = {1, 2, 3, 3, 4, 5};
+        int[] expectArray = {1, 2, 3, 500, 600, 700, 1000};
         assertThat(resultArray, is(expectArray));
     }
 }
