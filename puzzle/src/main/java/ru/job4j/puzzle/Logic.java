@@ -70,12 +70,12 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         for (int str = 0; str < table.length; str++) {
-            int strCount = 0;
-            int colCount = 0;
+            int line = 0;
+            int column = 0;
             for (int col = 0; col < table.length; col++) {
-                strCount += table[str][col];
-                colCount += table[col][str];
-                if ((strCount == table.length) || (colCount == table.length)) {
+                line += table[str][col];
+                column += table[col][str];
+                if ((line == table.length) || (column == table.length)) {
                     result = true;
                     break;
                 }
