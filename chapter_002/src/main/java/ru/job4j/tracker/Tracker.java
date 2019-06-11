@@ -34,9 +34,9 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
+        for (int index = 0; index != this.position; index++) {
+            if (this.items[index].getId().equals(id)) {
+                result = this.items[index];
                 break;
             }
         }
@@ -44,7 +44,7 @@ public class Tracker {
     }
 
     /**
-     * Массив должен заменить ячейку в массиве this.items.
+     * Метод заменяет ячейку в массиве this.items.
      * @param id id заявки.
      * @param item заявка.
      * @return удалось ли провести операцию.
@@ -54,6 +54,7 @@ public class Tracker {
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
                 result = true;
+                item.setId(id);
                 this.items[index] = item;
                 break;
             }
@@ -71,8 +72,8 @@ public class Tracker {
         for (int index = 0; index != this.position; index++) {
             if (this.items[index].getId().equals(id)) {
                 result = true;
-                System.arraycopy(this.items, index + 1, this.items, index, this.position);
-                this.position--;
+                System.arraycopy(this.items, index + 1, this.items, index, this.position - index - 1);
+                this.items[this.position--] = null;
                 break;
             }
         }
@@ -84,11 +85,7 @@ public class Tracker {
      * @return массив.
      */
     public Item[] findAll() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
 
     /**

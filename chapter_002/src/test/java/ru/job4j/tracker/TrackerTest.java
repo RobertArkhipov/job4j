@@ -60,7 +60,7 @@ public class TrackerTest {
         tracker.add(previous);
         tracker.add(next);
         next.setId(previous.getId());
-        Item[] array = new Item[]{previous, next};
+        Item[] array = {previous, next};
         assertThat(tracker.findAll(), is(array));
     }
 
