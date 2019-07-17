@@ -85,11 +85,10 @@ public class StartUI {
     private void editItem() {
         System.out.println("--- Редактирование завяки ---");
         String id = this.input.ask("Введите ID заявки, которую нужно отредактировать: ");
-        if (this.tracker.findById(id) != null) {
-            String name = this.input.ask("Введите новое имя заявки: ");
-            String desc = this.input.ask("Введите новое описание заявки: ");
-            Item item = new Item(name, desc, 0);
-            this.tracker.replace(id, item);
+        String name = this.input.ask("Введите новое имя заявки: ");
+        String desc = this.input.ask("Введите новое описание заявки: ");
+        Item item = new Item(name, desc, 0);
+        if (this.tracker.replace(id, item)) {
             System.out.println("Заявка с ID " + item.getId() + " теперь содержит:");
             System.out.println("Имя заявки: " + item.getName());
             System.out.println("Описание заявки: " + item.getDecs());
@@ -105,8 +104,7 @@ public class StartUI {
     private void deleteItem() {
         System.out.println("--- Удаление завяки ---");
         String id = this.input.ask("Введите ID заявки, которую нужно удалить: ");
-        if (this.tracker.findById(id) != null) {
-            this.tracker.delete(id);
+        if (this.tracker.delete(id)) {
             System.out.println("--- Заявка успешно удалена. ---");
         } else {
             System.out.println("--- ID не найден ---");
@@ -120,8 +118,8 @@ public class StartUI {
     private void findItemByID() {
         System.out.println("--- Поиск завяки по ID ---");
         String id = this.input.ask("Введите ID заявки, которую нужно найти: ");
-        if (this.tracker.findById(id) != null) {
-            Item item = this.tracker.findById(id);
+        Item item = this.tracker.findById(id);
+        if (item != null) {
             System.out.println("Заявка с ID " + item.getId() + " содержит: ");
             System.out.println("Имя заявки: " + item.getName());
             System.out.println("Описание заявки: " + item.getDecs());
