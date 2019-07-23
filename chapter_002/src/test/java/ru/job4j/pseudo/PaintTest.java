@@ -17,6 +17,7 @@ public class PaintTest {
      */
     @Test
     public void whenDrawSquare() {
+        String ln = System.lineSeparator();
         PrintStream stdout = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -26,10 +27,13 @@ public class PaintTest {
                 is(
                         new StringBuilder()
                                 .append("++++")
+                                .append(ln)
                                 .append("+     +")
+                                .append(ln)
                                 .append("+     +")
+                                .append(ln)
                                 .append("++++")
-                                .append(System.lineSeparator())
+                                .append(ln)
                                 .toString()
                 )
         );
@@ -41,6 +45,7 @@ public class PaintTest {
      */
     @Test
     public void whenDrawTriangle() {
+        String ln = System.lineSeparator();
         PrintStream stdout = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -48,10 +53,13 @@ public class PaintTest {
         assertThat(
                 new String(out.toByteArray()), is(new StringBuilder()
                         .append("*")
+                        .append(ln)
                         .append("**")
+                        .append(ln)
                         .append("***")
+                        .append(ln)
                         .append("****")
-                        .append(System.lineSeparator())
+                        .append(ln)
                         .toString()
                 )
         );

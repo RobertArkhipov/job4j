@@ -17,13 +17,17 @@ public class SquareTest {
     @Test
     public void whenDrawSquare() {
         Square square = new Square();
+        String ln = System.lineSeparator();
         assertThat(
                 square.draw(),
                 is(
                         new StringBuilder()
                                 .append("++++")
+                                .append(ln)
                                 .append("+     +")
+                                .append(ln)
                                 .append("+     +")
+                                .append(ln)
                                 .append("++++")
                                 .toString()
                 )
