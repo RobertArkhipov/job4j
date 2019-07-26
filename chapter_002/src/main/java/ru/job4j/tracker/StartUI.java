@@ -123,10 +123,10 @@ public class StartUI {
             System.out.println("Заявка с ID " + item.getId() + " содержит: ");
             System.out.println("Имя заявки: " + item.getName());
             System.out.println("Описание заявки: " + item.getDecs());
+        } else {
+            System.out.println("--- не найдено ---");
         }
-        System.out.println("--- не найдено ---");
     }
-
     /**
      * Метод реализует поиск заявки по имени.
      */

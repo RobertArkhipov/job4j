@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
@@ -9,6 +11,8 @@ import static org.hamcrest.core.IsNull.nullValue;
  * Test.
  */
 public class StartUITest {
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     /**
      * Тест-метод добавляет заявку и сравнивает с ожидаемым результатом.
@@ -43,5 +47,82 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(item.getId()), is(nullValue()));
+    }
+
+    /**
+     * Тест-метод отображает все заявки в хранилище, и сравнивает с ожидаемым результатом.
+     */
+    @Test
+    public void whenFindAllThenTrackerHasAllValues() {
+        System.setOut(new PrintStream(this.out));
+        String ln = System.lineSeparator();
+        Tracker tracker = new Tracker();
+        Item first = tracker.add(new Item("test name first", "desc first", 0L));
+        Item second = tracker.add(new Item("test name second", "desc second", 1L));
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()).substring(204, 389), is(new StringBuilder()
+                        .append("Имя заявки: " + first.getName())
+                        .append(ln)
+                        .append("Описание заявки: " + first.getDecs())
+                        .append(ln)
+                        .append("ID заявки: " + first.getId())
+                        .append(ln + "---------------" + ln)
+                        .append("Имя заявки: " + second.getName())
+                        .append(ln)
+                        .append("Описание заявки: " + second.getDecs())
+                        .append(ln)
+                        .append("ID заявки: " + second.getId())
+                        .toString()
+                )
+        );
+        System.setOut(this.stdout);
+    }
+
+    /**
+     * Тест-метод осуществляет поиск заявки по имени, и сравнивает с ожидаемым результатом.
+     */
+    @Test
+    public void whenFindByNameThenTrackerFindsValue() {
+        System.setOut(new PrintStream(this.out));
+        String ln = System.lineSeparator();
+        Tracker tracker = new Tracker();
+        Item first = tracker.add(new Item("test name first", "desc first", 0L));
+        tracker.add(new Item("test name second", "desc second", 1L));
+        Input input = new StubInput(new String[]{"5", "test name first", "6"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()).substring(224, 306), is(new StringBuilder()
+                        .append("Имя заявки: " + first.getName())
+                        .append(ln)
+                        .append("Описание заявки: " + first.getDecs())
+                        .append(ln)
+                        .append("ID заявки: " + first.getId())
+                        .toString()
+                )
+        );
+        System.setOut(this.stdout);
+    }
+
+    /**
+     * Тест-метод осуществляет поиск заявки по ID, и сравнивает с ожидаемым результатом.
+     */
+    @Test
+    public void whenFindByIDThenTrackerFindsValue() {
+        System.setOut(new PrintStream(this.out));
+        String ln = System.lineSeparator();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "desc", 0L));
+        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()).substring(203, 285), is(new StringBuilder()
+                        .append("Заявка с ID " + item.getId() + " содержит: ")
+                        .append(ln)
+                        .append("Имя заявки: " + item.getName())
+                        .append(ln)
+                        .append("Описание заявки: " + item.getDecs())
+                        .toString()
+                )
+        );
+        System.setOut(this.stdout);
     }
 }
