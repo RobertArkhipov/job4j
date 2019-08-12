@@ -59,7 +59,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item first = tracker.add(new Item("test name first", "desc first", 0L));
         Item second = tracker.add(new Item("test name second", "desc second", 1L));
-        Input input = new StubInput(new String[]{"1", "6"});
+        Input input = new StubInput(new String[]{"0", "6"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()).substring(204, 389), is(new StringBuilder()
                         .append("Имя заявки: " + first.getName())
