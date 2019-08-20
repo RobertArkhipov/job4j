@@ -1,10 +1,11 @@
 package ru.job4j.tracker;
 
-public class FindItemsByName implements UserAction {
-    @Override
-    public int key() {
-        return 5;
-    }
+class FindItemsByName extends BaseAction {
+
+   public FindItemsByName(int key, String name) {
+       super(key, name);
+   }
+
 
     /**
      * Метод реализует поиск заявки по имени.
@@ -20,10 +21,5 @@ public class FindItemsByName implements UserAction {
             System.out.println("ID заявки: " + item.getId());
             System.out.println("-------------------");
         }
-    }
-
-    @Override
-    public String info() {
-        return "5. Поиск заявки по имени";
     }
 }

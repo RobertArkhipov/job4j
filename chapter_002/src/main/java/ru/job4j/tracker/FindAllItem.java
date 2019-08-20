@@ -1,9 +1,9 @@
 package ru.job4j.tracker;
 
-public class FindAllItem implements UserAction {
-    @Override
-    public int key() {
-        return 1;
+class FindAllItem extends BaseAction {
+
+    public FindAllItem(int key, String name) {
+        super(key, name);
     }
 
     /**
@@ -19,10 +19,5 @@ public class FindAllItem implements UserAction {
             System.out.println("---------------");
         }
         System.out.println("     ");
-    }
-
-    @Override
-    public String info() {
-        return "1. Отобразить все заявки";
     }
 }
