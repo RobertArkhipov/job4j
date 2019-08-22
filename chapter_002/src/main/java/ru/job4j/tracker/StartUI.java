@@ -10,6 +10,7 @@ import java.util.List;
 public class StartUI {
     private final Input input;
     private final Tracker tracker;
+    private boolean working;
 
     /**
      * Конструтор инициализирующий поля.
@@ -19,6 +20,7 @@ public class StartUI {
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
+        this.working = true;
     }
 
     /**
@@ -27,7 +29,7 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLength(); i++) {
             range.add(i);
         }
@@ -36,7 +38,11 @@ public class StartUI {
             System.out.println("Меню.");
             menu.show();
             menu.select(input.ask("select:", ranges));
-        } while ((!("y").equals(this.input.ask("Exit?(y): "))));
+        } while (this.working);
+    }
+
+    public void stop() {
+        this.working = false;
     }
 
     /**

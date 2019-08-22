@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
@@ -30,14 +29,14 @@ public class MenuTracker {
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Добавить новую заявку"));
         this.actions.add(new FindAllItem(1, "Отобразить все заявки"));
         this.actions.add(new UpdateItem(2, "Редактировать заявку"));
         this.actions.add(new DeleteItem(3, "Удалить заявку"));
         this.actions.add(new FindItemById(4, "Поиск заявки по Id"));
         this.actions.add(new FindItemsByName(5, "Поиск заявки по имени"));
-        this.actions.add(new ExitProgram(6, "Выход из программы"));
+        this.actions.add(new ExitProgram(6, "Выход из программы", ui));
     }
 
     /**
