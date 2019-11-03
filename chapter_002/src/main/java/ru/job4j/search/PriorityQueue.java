@@ -11,27 +11,15 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        if (tasks.peekFirst() == null) {
-            tasks.add(task);
-        }
-        for (int index = 0; index < tasks.size(); index++) {
-            Task tsk = tasks.get(index);
-            if (task.getPriority() < tsk.getPriority()) {
-                if (index == 0) {
-                    tasks.addFirst(task);
-                    break;
-                } else {
-                    tasks.add(index, task);
-                    break;
-                }
-            }
-            if (index == tasks.size() - 1) {
-                tasks.addLast(task);
+        for (int index = 0; index < tasks.size() + 1; index++) {
+            if (index == task.getPriority() - 1) {
+                tasks.add(index, task);
                 break;
+            } else if (index == tasks.size()) {
+                tasks.add(task);
             }
         }
     }
-
     public Task take() {
         return this.tasks.poll();
     }
