@@ -1,9 +1,12 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.core.IsNull.nullValue;
+
 
 /**
  * Test.
@@ -59,9 +62,10 @@ public class TrackerTest {
         Item next = new Item("test2", "testDescription", 1234L);
         tracker.add(previous);
         tracker.add(next);
-        next.setId(previous.getId());
-        Item[] array = {previous, next};
-        assertThat(tracker.findAll(), is(array));
+        List<Item> expected = new ArrayList<>();
+        expected.add(previous);
+        expected.add(next);
+        assertThat(tracker.findAll(), is(expected));
     }
 
     /**
@@ -74,9 +78,9 @@ public class TrackerTest {
         Item next = new Item("test2", "testDescription", 1234L);
         tracker.add(previous);
         tracker.add(next);
-        Item[] expected = {tracker.findAll()[1]};
-        Item[] result = tracker.findByName("test2");
-        assertThat(result, is(expected));
+        List<Item> expected = tracker.findAll();
+        List<Item> result = tracker.findByName("test2");
+        assertThat(result.get(0).getName(), is(expected.get(1).getName()));
     }
 
     /**
@@ -85,11 +89,11 @@ public class TrackerTest {
     @Test
     public void whenDeleteItem() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("test1", "testDescription", 123L);
-        Item next = new Item("test2", "testDescription", 1234L);
-        tracker.add(previous);
-        tracker.add(next);
-        tracker.delete(previous.getId());
-        assertThat(tracker.findById(previous.getId()), is(nullValue()));
+        Item first = new Item("test1", "testDescription", 123L);
+        Item second = new Item("test2", "testDescription", 1234L);
+        tracker.add(first);
+        tracker.add(second);
+        tracker.delete(first.getId());
+        assertThat(tracker.findAll().get(0).getId(), is(second.getId()));
     }
 }
