@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
-public class Item {
+import org.jetbrains.annotations.NotNull;
+
+public class Item implements Comparable<Item> {
     private String id;
     private String name;
     private String decs;
@@ -42,5 +44,18 @@ public class Item {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{"
+                + "name='" + name + '\''
+                + ", decs=" + decs
+                + '}';
+    }
+
+    @Override
+    public int compareTo(@NotNull Item another) {
+        return name.compareTo(another.name);
     }
 }
