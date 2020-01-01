@@ -15,6 +15,13 @@ public class User implements Comparable<User> {
         this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
     /**
      * Метод compareTo сравнивает имена, если они равны, то сравнивает возраст.
      * @param o пользователь.
@@ -40,6 +47,14 @@ public class User implements Comparable<User> {
         User user = (User) o;
         return age == user.age
                 && Objects.equals(name, user.name);
+    }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "name='" + name + '\''
+                + ", age=" + age
+                + '}';
     }
 
     @Override

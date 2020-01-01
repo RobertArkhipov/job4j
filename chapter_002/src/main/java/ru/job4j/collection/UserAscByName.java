@@ -1,0 +1,13 @@
+package ru.job4j.collection;
+
+import java.util.Comparator;
+
+/**
+ * Класс UserAscByName реализует интерфейс java.util.Comparator.
+ */
+public class UserAscByName implements Comparator<User> {
+        @Override
+        public int compare(User o1, User o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
+    }
