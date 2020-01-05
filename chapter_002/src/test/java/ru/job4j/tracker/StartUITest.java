@@ -61,7 +61,8 @@ public class StartUITest {
         Item second = tracker.add(new Item("test name second", "desc second", 1L));
         Input input = new StubInput(new String[]{"1", "6"});
         new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()).substring(211, 396), is(new StringBuilder()
+        //assertThat(new String(out.toByteArray()).substring(211, 396), is(new StringBuilder()  // если \r\n
+          assertThat(new String(out.toByteArray()).substring(202, 381), is(new StringBuilder()  // если \n
                         .append("Имя заявки: " + first.getName())
                         .append(ln)
                         .append("Описание заявки: " + first.getDecs())
@@ -91,7 +92,8 @@ public class StartUITest {
         tracker.add(new Item("test name second", "desc second", 1L));
         Input input = new StubInput(new String[]{"5", "test name first", "6"});
         new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()).substring(231, 313), is(new StringBuilder()
+        //assertThat(new String(out.toByteArray()).substring(231, 313), is(new StringBuilder()  // если \r\n
+          assertThat(new String(out.toByteArray()).substring(221, 301), is(new StringBuilder()  // если \n
                         .append("Имя заявки: " + first.getName())
                         .append(ln)
                         .append("Описание заявки: " + first.getDecs())
@@ -114,7 +116,8 @@ public class StartUITest {
         Item item = tracker.add(new Item("test name", "desc", 0L));
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()).substring(210, 292), is(new StringBuilder()
+        //assertThat(new String(out.toByteArray()).substring(210, 292), is(new StringBuilder()  // если \r\n
+          assertThat(new String(out.toByteArray()).substring(201, 281), is(new StringBuilder()  // если \n
                         .append("Заявка с ID " + item.getId() + " содержит: ")
                         .append(ln)
                         .append("Имя заявки: " + item.getName())
