@@ -23,10 +23,17 @@ public class BankService {
      */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
+        boolean count = false;
         if (user != null) {
-            if (!users.containsValue(account.getRequisite())) {
-                users.get(user).add(account);
+            for (Account value : users.get(user)) {
+                if (value.getRequisite().equals(account.getRequisite())) {
+                    count = true;
+                    break;
+                }
             }
+        }
+        if (!count) {
+            users.get(user).add(account);
         }
     }
 
