@@ -7,7 +7,13 @@ public class Tiger extends Predator {
         System.out.println("load Tiger");
     }
 
+    public Tiger(String name) {
+        super(name);
+        System.out.println("Tiger");
+    }
+
     public static void main(String[] args) {
-        Tiger tiger = new Tiger();
+        Tiger tigerFirst = new Tiger();
+        Tiger tigerSecond = new Tiger("Amur");
     }
 }
