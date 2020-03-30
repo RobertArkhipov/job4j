@@ -20,14 +20,10 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        boolean result = false;
-        if (user.getUsername().length() > 2 && user.isValid()) {
-            result = true;
-        }
-        if (!result) {
+        if (user.getUsername().length() < 3 || !user.isValid()) {
             throw new UserInvalidException("User is invalid or user name consists of less than three characters");
         }
-        return result;
+        return true;
     }
 
     public static void main(String[] args) {
