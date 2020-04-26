@@ -2,6 +2,7 @@ package ru.job4j.stream;
 
 import org.junit.Test;
 import java.util.List;
+import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -53,5 +54,22 @@ public class SchoolTest {
         );
         List<Student> result = School.collect(students, student -> student.getScore() > 0 && student.getScore() < 50);
         assertThat(result.get(0).getScore(), is(students.get(1).getScore()));
+    }
+
+    /**
+     * Тест-метод сравнивает ответ метода School.map и ожидаемый результат.
+     * Ожидается список учеников преобразованный в карту.
+     * В качестве ключа используется фамилия ученика.
+     * В качестве значения - балл полученный учеником.
+     */
+    @Test
+    public void whenListToMap() {
+        List<Student> students = List.of(
+                new Student("Ivanov", 100),
+                new Student("Petrov", 25),
+                new Student("Sidorov", 55)
+        );
+        Map result = School.map(students);
+        assertThat(result.get("Petrov"), is(25));
     }
 }
