@@ -23,4 +23,19 @@ public class MatrixCheckMonoTest {
         boolean result = MatrixCheckMono.monoHorizontal(input, 1);
         assertThat(result, is(true));
     }
+
+    /**
+     * Тест-метод добавляет двухмерный массив символов в метод MatrixCheckMono.monoVertical,
+     * и сравнивает с ожидаемым результатом. Ожидается утвердительный ответ: - искомый столбец заполнен символом 'X'.
+     */
+    @Test
+    public void whenHasMonoVertical() {
+        char[][] input = {
+                {' ', ' ', 'X'},
+                {' ', ' ', 'X'},
+                {' ', ' ', 'X'},
+        };
+        boolean result = MatrixCheckMono.monoVertical(input, 2);
+        assertThat(result, is(true));
+    }
 }
