@@ -54,4 +54,58 @@ public class MatrixCheckMonoTest {
         char[] expect = {'X', 'X', 'X'};
         assertThat(result, is(expect));
     }
+
+    /**
+     * Тест-метод добавляет двухмерный массив символов в метод MatrixCheckMono.isWin,
+     * и сравнивает с ожидаемым результатом. Ожидается утвердительный ответ: - в двухмерном массиве
+     * найден столбец заполненный символом 'X'
+     */
+    @Test
+    public void whenDataMonoByTrueThenTrue() {
+        char[][] input = {
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheckMono.isWin(input);
+        assertThat(result, is(true));
+    }
+
+    /**
+     * Тест-метод добавляет двухмерный массив символов в метод MatrixCheckMono.isWin,
+     * и сравнивает с ожидаемым результатом. Ожидается отрицательный ответ: - в двухмерном массиве
+     * не найдены ни строка ни столбец заполненные символом 'X'
+     */
+    @Test
+    public void whenDataNotMonoByTrueThenFalse() {
+        char[][] input = {
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', 'X', ' ', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheckMono.isWin(input);
+        assertThat(result, is(false));
+    }
+
+    /**
+     * Тест-метод добавляет двухмерный массив символов в метод MatrixCheckMono.isWin,
+     * и сравнивает с ожидаемым результатом. Ожидается утвердительный ответ: - в двухмерном массиве
+     * найдена строка заполненная символом 'X'
+     */
+    @Test
+    public void whenDataHMonoByTrueThenTrue() {
+        char[][] input = {
+                {' ', ' ', ' ', ' ', ' '},
+                {' ', ' ', ' ', ' ', ' '},
+                {'X', 'X', 'X', 'X', 'X'},
+                {' ', ' ', 'X', ' ', ' '},
+                {' ', ' ', 'X', ' ', ' '},
+        };
+        boolean result = MatrixCheckMono.isWin(input);
+        assertThat(result, is(true));
+    }
 }

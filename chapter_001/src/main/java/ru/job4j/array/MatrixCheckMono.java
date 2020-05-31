@@ -51,4 +51,20 @@ public class MatrixCheckMono {
         }
         return rsl;
     }
+
+    /**
+     * Метод проверяет, что в квадратном массиве есть строчки или столбцы, заполненные только символом 'X'
+     * @param board двухмерный массив символов.
+     * @return true or false.
+     */
+    public static boolean isWin(char[][] board) {
+        boolean result = false;
+        for (int index = 0; index < board.length; index++) {
+            if (monoHorizontal(board, index) || monoVertical(board, index)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 }
