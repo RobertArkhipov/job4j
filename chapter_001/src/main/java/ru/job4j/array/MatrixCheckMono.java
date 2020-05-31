@@ -15,10 +15,10 @@ public class MatrixCheckMono {
         boolean result = true;
         for (int index = 0; index < board.length; index++) {
             if (board[row][index] != 'X') {
-                    result = false;
-                    break;
-                }
+                result = false;
+                break;
             }
+        }
         return result;
     }
 
@@ -37,5 +37,18 @@ public class MatrixCheckMono {
             }
         }
         return result;
+    }
+
+    /**
+     * Метод заполняет одномерный массив элементами диагонали из двухмерного массива.
+     * @param board двухмерный массив символов.
+     * @return одномерный массив.
+     */
+    public static char[] extractDiagonal(char[][] board) {
+        char[] rsl = new char[board.length];
+        for (int index = 0; index < board.length; index++) {
+            rsl[index] = board[index][index];
+        }
+        return rsl;
     }
 }

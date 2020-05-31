@@ -38,4 +38,20 @@ public class MatrixCheckMonoTest {
         boolean result = MatrixCheckMono.monoVertical(input, 2);
         assertThat(result, is(true));
     }
+
+    /**
+     * Тест-метод добавляет двухмерный массив символов в метод MatrixCheckMono.extractDiagonal,
+     * и сравнивает с ожидаемым результатом. Ожидается одномерный массив заполненный элементами диагонали двухмерного массива.
+     */
+    @Test
+    public void whenDiagonal() {
+        char[][] input = {
+                {'X', ' ', ' '},
+                {' ', 'X', ' '},
+                {' ', ' ', 'X'},
+        };
+        char[] result = MatrixCheckMono.extractDiagonal(input);
+        char[] expect = {'X', 'X', 'X'};
+        assertThat(result, is(expect));
+    }
 }
